@@ -147,19 +147,16 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="TestNG.LoginTests.testLogin (1)" />
+      <item itemvalue="TestNG.LoginTests.testLogin" />
       <item itemvalue="TestNG.LoginTests" />
-      <item itemvalue="TestNG.LoginTests (1)" />
       <item itemvalue="TestNG.RegistrationTests.testRegistration" />
       <item itemvalue="TestNG.RegistrationTests" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.RegistrationTests" />
-        <item itemvalue="TestNG.LoginTests (1)" />
         <item itemvalue="TestNG.RegistrationTests.testRegistration" />
         <item itemvalue="TestNG.LoginTests" />
-        <item itemvalue="TestNG.LoginTests.testLogin (1)" />
       </list>
     </recent_temporary>
   </component>
