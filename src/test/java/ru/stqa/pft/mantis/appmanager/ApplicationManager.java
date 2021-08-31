@@ -13,9 +13,10 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     private final Properties properties;
-    WebDriver wd;
+    private WebDriver wd;
 
     private String browser;
+    private RegistrationHelper registrationHelper;
 
     // В конструкторе передается тип браузера, выставляется в классе TestBase
     public ApplicationManager(String browser) {
@@ -25,27 +26,14 @@ public class ApplicationManager {
 
     public void init() throws Exception {
         String nameOfPropertyFile = System.getProperty("nameOfPropertyFile", "local");
-        System.out.println(nameOfPropertyFile);
         properties.load(new FileReader(String.format("src/test/resources/%s.properties", nameOfPropertyFile)));
-
-        if (browser.equals(BrowserType.FIREFOX)) {
-            System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-            wd = new FirefoxDriver();
-        } else if (browser.equals(BrowserType.CHROME)) {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-            wd = new ChromeDriver();
-        } else if (browser.equals(BrowserType.OPERA)) {
-            System.setProperty("webdriver.opera.driver", "src/main/resources/operadriver.exe");
-            wd = new OperaDriver();
-        }
-
-        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        wd.manage().window().maximize();
-        wd.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
-        wd.quit();
+        if (wd != null) {
+            wd.quit();
+
+        }
     }
 
 
@@ -55,5 +43,31 @@ public class ApplicationManager {
 
     public String getProperty(String key) {
         return properties.getProperty(key);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null) {
+            if (browser.equals(BrowserType.FIREFOX)) {
+                System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+                wd = new FirefoxDriver();
+            } else if (browser.equals(BrowserType.CHROME)) {
+                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                wd = new ChromeDriver();
+            } else if (browser.equals(BrowserType.OPERA)) {
+                System.setProperty("webdriver.opera.driver", "src/main/resources/operadriver.exe");
+                wd = new OperaDriver();
+            }
+            wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            wd.manage().window().maximize();
+            wd.get(properties.getProperty("web.baseUrl"));
+        }
+        return wd;
     }
 }
