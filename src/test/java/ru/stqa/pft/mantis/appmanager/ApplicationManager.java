@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.BrowserType;
-import ru.stqa.pft.model.MailMessage;
 
 import java.io.FileReader;
 import java.util.Properties;
@@ -20,6 +19,7 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private SoapHelper soapHelper;
 
     // В конструкторе передается тип браузера, выставляется в классе TestBase
     public ApplicationManager(String browser) {
@@ -55,10 +55,10 @@ public class ApplicationManager {
     }
 
     public FtpHelper ftp() {
-       if (ftp == null) {
-           ftp = new FtpHelper(this);
-       }
-       return ftp;
+        if (ftp == null) {
+            ftp = new FtpHelper(this);
+        }
+        return ftp;
     }
 
     public WebDriver getDriver() {
@@ -85,5 +85,12 @@ public class ApplicationManager {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
+    }
+
+    public SoapHelper soap() {
+        if(soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 }
