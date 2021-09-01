@@ -71,8 +71,27 @@
             <version>3.6</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.subethamail/subethasmtp -->
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp</artifactId>
+            <version>3.1.7</version>
+            <scope>test</scope>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/ru.lanwen.verbalregex/java-verbal-expressions -->
+        <dependency>
+            <groupId>ru.lanwen.verbalregex</groupId>
+            <artifactId>java-verbal-expressions</artifactId>
+            <version>1.4</version>
+        </dependency>
 
+        <dependency>
+            <groupId>biz.futureware.mantis</groupId>
+            <artifactId>mantis-axis-soap-client</artifactId>
+            <version>1.2.19</version>
+        </dependency>
+        
     </dependencies>
 
 </project>

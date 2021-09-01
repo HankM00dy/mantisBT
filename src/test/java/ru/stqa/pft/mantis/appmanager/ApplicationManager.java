@@ -18,6 +18,8 @@ public class ApplicationManager {
     private String browser;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
+    private MailHelper mailHelper;
+    private SoapHelper soapHelper;
 
     // В конструкторе передается тип браузера, выставляется в классе TestBase
     public ApplicationManager(String browser) {
@@ -53,10 +55,10 @@ public class ApplicationManager {
     }
 
     public FtpHelper ftp() {
-       if (ftp == null) {
-           ftp = new FtpHelper(this);
-       }
-       return ftp;
+        if (ftp == null) {
+            ftp = new FtpHelper(this);
+        }
+        return ftp;
     }
 
     public WebDriver getDriver() {
@@ -76,5 +78,19 @@ public class ApplicationManager {
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
+    }
+
+    public SoapHelper soap() {
+        if(soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 }
